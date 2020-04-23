@@ -6,8 +6,10 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 8080;
 
 app.get('/', function(req, res) {
-    res.render('index.ejs');
+    res.sendFile(__dirname + '/index.html');
 });
+
+
 
 io.sockets.on('connection', function(socket) {
     socket.on('username', function(username) {
@@ -26,5 +28,5 @@ io.sockets.on('connection', function(socket) {
 });
 
 const server = http.listen(port, function() {
-   // console.log('listening on *:8080');
+   console.log('listening on *:8080');
 });
